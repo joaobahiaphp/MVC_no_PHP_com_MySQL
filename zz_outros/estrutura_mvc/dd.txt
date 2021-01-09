@@ -1,0 +1,48 @@
+app
+-classes
+-controllers
+ -ClienteController.php
+ -IndexController.php
+ -ProdutoController.php
+
+-core
+ -Controller.php
+ -Core.php
+ -Model.php
+
+-functions
+-models
+ -M_Cliente.php
+-views
+ -v_cliente.php
+ -v_produto.php
+assets
+-css
+-img
+-js
+
+nbproject
+-private
+ -private.properties
+ -private
+-project.properties
+-project
+
+vendor
+-composer
+ -autoload_classmap.php
+ -autoload_namespaces.php
+ -autoload_psr4.php
+ -autoload_real.php
+ -autoload_static.php
+ -ClassLoader.php
+ -installed.json
+ -LICENSE
+-autoload.php
+
+config
+-config.php
+
+.htaccess
+composer.json
+index.php
