@@ -1,13 +1,81 @@
 <?php
 
 class Core{
+
+	private $controller;
+	private $metodo;
+	private $parametros = array();
+
+	public function __destruct(){
+		
+	}
+
+	public function verificaUrl(){
+		
+		$url = explode('index.php',$_SERVER['PHP_SELF']);
+		$url = end($url);
+
+		if($url != ""){
+			$url = explode('/',$url);
+			array_shift($url);
+			
+			$this->controller = ucfirst($url[0])."Controller";
+			array_shift($url);
+			
+			$this->metodo = $url[0];
+			array_shift($url);
+			
+			$this->parametros = array_filter($url);
+		}
+		else{
+			$this->controller = ucfirst(CONTROLLER_PADRAO)."Controller";
+		}
+
+		echo "<pre>";
+		print_r($url);
+	}
+	public function getController(){
+		if(class_exists(NAMESPACE_CONTROLLER.$this->controller)){
+			return NAMESPACE_CONTROLLER.$this->controller;			
+		}
+		else{
+			return NAMESPACE_CONTROLLER."IndexController";
+		}
+
+	}
+	
+	public function getMetodo(){
+		//$existe = false;
+		if(method_exists(NAMESPACE_CONTROLLER.$this->controller,$this->metodo)){
+			//$existe = true;
+			return $this->metodo;
+		}
+		else{
+			return METODO_PADRAO;
+		}
+
+	}
+	
+	public function getParametros(){
+		return $this->parametros;
+	}
+	
+	public function run(){
+		$controllerCorrente = $this->getController();
+		$c = new $controllerCorrente;
+		call_user_func_array(array($c,$this->getMetodo()),$this->getParametros());
+		//echo $this->metodo."()<br />";
+	}
+
+	public function __construct(){
+		$this->verificaUrl();
+	}
+	
+/*
+	
     private $controller;
     private $metodo;
     private $parametros = array();
-    
-    public function __construct() {
-        $this->verificaUri();
-    }
     
     public function run(){
         $controllerCorrente = $this->getController();        
@@ -16,6 +84,11 @@ class Core{
        call_user_func_array(array($c, $this->getMetodo()), $this->getParametros());      
         
     }
+	
+    public function __construct() {
+        $this->verificaUri();
+    }
+    
     public function verificaUri(){
         $url =explode("index.php", $_SERVER["PHP_SELF"]);
         $url = end($url);
@@ -62,5 +135,5 @@ class Core{
         return $this->parametros;
     }
 
-
+*/
 }

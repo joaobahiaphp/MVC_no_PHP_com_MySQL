@@ -1,4 +1,15 @@
 <?php
+
+namespace app\controllers;
+
+class IndexController{
+	public function index(){
+		echo "classe indexController";
+	}
+}
+
+
+/*
 namespace app\controllers;
 
 class IndexController{
@@ -7,3 +18,6 @@ class IndexController{
        echo "<br>Controller padrão<br>";
    } 
 }
+*/
+
+?>

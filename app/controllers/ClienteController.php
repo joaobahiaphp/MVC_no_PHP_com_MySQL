@@ -1,4 +1,17 @@
 <?php
+
+namespace app\controllers;
+
+class ClienteController{
+	public function lista($valor){
+		echo "estou listando os {$valor} clientes";
+	}
+	public function index(){
+		
+	}
+}
+
+/*
 namespace app\controllers;
 
 use app\core\Controller;
@@ -17,9 +30,7 @@ class ClienteController extends Controller{
        $dados["nome"] = "Manoel Jailton";
        $dados["email"] = "mjailton@gmail.com";
        $this->load("v_cliente", $dados);
-   }
-   
-  
-   
+   } 
    
 }
+*/
